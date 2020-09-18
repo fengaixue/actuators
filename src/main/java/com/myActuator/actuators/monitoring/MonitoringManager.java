@@ -2,6 +2,7 @@ package com.myActuator.actuators.monitoring;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.myActuator.actuators.component.health.HealthEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -48,10 +49,24 @@ public class MonitoringManager implements CommandLineRunner {
     private  static final String UP = "UP";
 
     /**
+     * 周期
+     */
+    private  static final long period = 1000 * 10 *  1;
+
+    /**
+     * 启动间隔
+     */
+    private  static final long startInterva = 1000 * 60 *  10;
+
+    /**
      * 初始化方法 设置循环周期、等待周期
      */
     public MonitoringManager(){
-
+        HealthEntity healthEntity = HealthEntity.getInstance();
+        healthEntity.setPeriod(period);
+        healthEntity.setStartInterva(startInterva);
+        healthEntity.setCmdPath(CMDPATH);
+        healthEntity.setRemotHost(REMOTHOST);
     }
 
     /**
@@ -61,11 +76,11 @@ public class MonitoringManager implements CommandLineRunner {
      */
     public void exeu(Object obj) throws  Exception{
         log.info(" start time:{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        Process ps = Runtime.getRuntime().exec(CMDPATH);
+        Process ps = Runtime.getRuntime().exec(HealthEntity.getInstance().getCmdPath());
         ps.waitFor();
         log.info(" run restart bat :{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         //休息10分钟 用于启动项目时间
-        Thread.sleep(1000 * 60 *  10);
+        Thread.sleep(HealthEntity.getInstance().getStartInterva());
     }
 
     @Override
@@ -77,8 +92,6 @@ public class MonitoringManager implements CommandLineRunner {
                 log.info("获取健康数据线程启动。。。。");
                 Calendar calendar = Calendar.getInstance();
                 Date firstTime = calendar.getTime();
-                //每10秒执行一次
-                long period = 1000 * 10 *  1;
 
                 Timer timer = new Timer();
 
@@ -86,8 +99,8 @@ public class MonitoringManager implements CommandLineRunner {
                     @Override
                     public void run() {
                         try {
-                            String jsonStr = restTemplate.getForObject(REMOTHOST, String.class);
-                            log.info(jsonStr);
+                            String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
+                            //log.info(jsonStr);
                             JSONObject jsonObject = JSON.parseObject(jsonStr);
                             String status = jsonObject.getString(KEY_STATUS);
                             if(!UP.equals(status)){
@@ -101,7 +114,7 @@ public class MonitoringManager implements CommandLineRunner {
                             }
                         }
                     }
-                }, firstTime, period);
+                }, firstTime, HealthEntity.getInstance().getPeriod());
             }
         });
         t1.start();

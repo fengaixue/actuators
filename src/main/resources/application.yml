@@ -3,3 +3,4 @@ server:
 spring:
   application:
     name: AdminUi-Server
+log2path: D:/mine/logs2
