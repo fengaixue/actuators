@@ -146,24 +146,6 @@
         </filter>
     </appender>
 
-
-    <logger name="com.mineStatic.mine.concentration.dao" level="debug" />
-    <logger name="com.mineStatic.mine.calculate.dao" level="debug" />
-    <logger name="com.mineStatic.mineSystem.dao.system" level="debug" />
-    <logger name="com.mineStatic.mine.common.dao" level="debug" />
-    <logger name="com.mineStatic.mine.dataAcqSys.dao" level="debug" />
-    <logger name="com.mineStatic.mine.db2.dao" level="debug" />
-    <logger name="com.mineStatic.app.dao" level="debug" />
-    <logger name="com.mineStatic.mine.shifting.dao" level="debug" />
-    <logger name="com.mineStatic.mine.exam.dao" level="debug" />
-    <logger name="com.mineStatic.mine.calcReport.dao" level="debug" />
-    <logger name="com.mineStatic.mine.show.dao" level="debug" />
-    <logger name="com.mineStatic.mine.qualityDetectionSystem.dao" level="debug" />
-    <!--开发环境:打印控制台 D:\mine_static\mineStatic\src\main\java\com\mineStatic\app\dao
-    <springProfile name="dev">
-        <logger name="com.nmys.view" level="info"/>
-    </springProfile>-->
-
     <root level="info">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE" />
@@ -172,15 +154,5 @@
         <appender-ref ref="ERROR_FILE" />
     </root>
 
-    <!--生产环境:输出到文件-->
-<!--    <springProfile name="pro">
-    <root level="info">
-    <appender-ref ref="CONSOLE" />
-    <appender-ref ref="DEBUG_FILE" />
-    <appender-ref ref="INFO_FILE" />
-    <appender-ref ref="ERROR_FILE" />
-    <appender-ref ref="WARN_FILE" />
-    </root>
-    </springProfile>-->
 
 </configuration>

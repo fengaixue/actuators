@@ -59,6 +59,11 @@ public class MonitoringManager implements CommandLineRunner {
     private  static final long startInterva = 1000 * 60 *  10;
 
     /**
+     * 运行标记
+     */
+    private static final boolean FLAG = true;
+
+    /**
      * 初始化方法 设置循环周期、等待周期
      */
     public MonitoringManager(){
@@ -67,6 +72,7 @@ public class MonitoringManager implements CommandLineRunner {
         healthEntity.setStartInterva(startInterva);
         healthEntity.setCmdPath(CMDPATH);
         healthEntity.setRemotHost(REMOTHOST);
+        healthEntity.setFlag(FLAG);
     }
 
     /**
@@ -98,19 +104,21 @@ public class MonitoringManager implements CommandLineRunner {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        try {
-                            String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
-                            //log.info(jsonStr);
-                            JSONObject jsonObject = JSON.parseObject(jsonStr);
-                            String status = jsonObject.getString(KEY_STATUS);
-                            if(!UP.equals(status)){
-                                exeu(obj);
-                            }
-                        } catch (Exception e) {
-                            try{
-                                exeu(obj);
-                            }catch(Exception a){
-                                log.error("exeu run error >> {}",a.getMessage());
+                        if(HealthEntity.getInstance().isFlag()){
+                            try {
+                                String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
+                                //log.info(jsonStr);
+                                JSONObject jsonObject = JSON.parseObject(jsonStr);
+                                String status = jsonObject.getString(KEY_STATUS);
+                                if(!UP.equals(status)){
+                                    exeu(obj);
+                                }
+                            } catch (Exception e) {
+                                try{
+                                    exeu(obj);
+                                }catch(Exception a){
+                                    log.error("exeu run error >> {}",a.getMessage());
+                                }
                             }
                         }
                     }
