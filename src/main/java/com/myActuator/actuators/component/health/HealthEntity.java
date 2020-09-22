@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * <h1> 配置参数试题类 </h1>
+ * <h1> 配置参数实体类 </h1>
  *
  * @author 风清扬
  * @date 2020/09/18 14:13

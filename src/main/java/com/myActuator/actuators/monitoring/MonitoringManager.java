@@ -92,40 +92,34 @@ public class MonitoringManager implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Object obj=new Object();
-        Thread t1=new Thread(new Runnable() {
+        log.info("获取健康数据线程启动。。。。");
+        Calendar calendar = Calendar.getInstance();
+        Date firstTime = calendar.getTime();
+
+        Timer timer = new Timer();
+
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                log.info("获取健康数据线程启动。。。。");
-                Calendar calendar = Calendar.getInstance();
-                Date firstTime = calendar.getTime();
-
-                Timer timer = new Timer();
-
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        if(HealthEntity.getInstance().isFlag()){
-                            try {
-                                String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
-                                //log.info(jsonStr);
-                                JSONObject jsonObject = JSON.parseObject(jsonStr);
-                                String status = jsonObject.getString(KEY_STATUS);
-                                if(!UP.equals(status)){
-                                    exeu(obj);
-                                }
-                            } catch (Exception e) {
-                                try{
-                                    exeu(obj);
-                                }catch(Exception a){
-                                    log.error("exeu run error >> {}",a.getMessage());
-                                }
-                            }
+                if(HealthEntity.getInstance().isFlag()){
+                    try {
+                        String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
+                        //log.info(jsonStr);
+                        JSONObject jsonObject = JSON.parseObject(jsonStr);
+                        String status = jsonObject.getString(KEY_STATUS);
+                        if(!UP.equals(status)){
+                            exeu(obj);
+                        }
+                    } catch (Exception e) {
+                        try{
+                            exeu(obj);
+                        }catch(Exception a){
+                            log.error("exeu run error >> {}",a.getMessage());
                         }
                     }
-                }, firstTime, HealthEntity.getInstance().getPeriod());
+                }
             }
-        });
-        t1.start();
+        }, firstTime, HealthEntity.getInstance().getPeriod());
     }
 }
 //多线程方式执行，对象锁，较为不妥，唤醒时间未按设定时间完成唤醒
