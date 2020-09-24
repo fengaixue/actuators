@@ -108,14 +108,16 @@ public class MonitoringManager implements CommandLineRunner {
                         JSONObject jsonObject = JSON.parseObject(jsonStr);
                         String status = jsonObject.getString(KEY_STATUS);
                         if(!UP.equals(status)){
-                            exeu(obj);
+                            log.error("error >> 不等于 UP ");
+                            //exeu(obj);
                         }
                     } catch (Exception e) {
-                        try{
+                            log.error("error >> {}",e.getMessage());
+                        /*try{
                             exeu(obj);
                         }catch(Exception a){
                             log.error("exeu run error >> {}",a.getMessage());
-                        }
+                        }*/
                     }
                 }
             }
