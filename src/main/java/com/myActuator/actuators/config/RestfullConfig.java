@@ -33,7 +33,7 @@ public class RestfullConfig {
     public RestfullConfig(){
         HealthEntity healthEntity = HealthEntity.getInstance();
         healthEntity.setConnectTimeout(60 * 1000 * 3);
-        healthEntity.setReadTimeout(60 * 1000 * 3);
+        healthEntity.setReadTimeout(60 * 1000 * 1);
     }
 
     @Bean
