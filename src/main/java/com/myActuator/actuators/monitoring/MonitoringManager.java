@@ -61,7 +61,7 @@ public class MonitoringManager implements CommandLineRunner {
     /**
      * 运行标记
      */
-    private static final boolean FLAG = true;
+    private static final boolean FLAG = false;
 
     /**
      * 初始化方法 设置循环周期、等待周期
@@ -81,10 +81,10 @@ public class MonitoringManager implements CommandLineRunner {
      * @throws Exception
      */
     public void exeu(Object obj) throws  Exception{
-        log.info(" start time:{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        log.info(" **------**start time:{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         Process ps = Runtime.getRuntime().exec(HealthEntity.getInstance().getCmdPath());
         ps.waitFor();
-        log.info(" run restart bat :{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        log.info(" **------**run restart bat :{}",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         //休息10分钟 用于启动项目时间
         Thread.sleep(HealthEntity.getInstance().getStartInterva());
     }
@@ -101,7 +101,7 @@ public class MonitoringManager implements CommandLineRunner {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(HealthEntity.getInstance().isFlag()){
+
                     try {
                         String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHost(), String.class);
                         //log.info(jsonStr);
@@ -109,17 +109,21 @@ public class MonitoringManager implements CommandLineRunner {
                         String status = jsonObject.getString(KEY_STATUS);
                         if(!UP.equals(status)){
                             log.error("error >> 不等于 UP ");
-                            //exeu(obj);
+                            if(HealthEntity.getInstance().isFlag()){
+                                exeu(obj);
+                            }
                         }
                     } catch (Exception e) {
-                            log.error("error >> {}",e.getMessage());
-                        /*try{
-                            exeu(obj);
-                        }catch(Exception a){
-                            log.error("exeu run error >> {}",a.getMessage());
-                        }*/
+                        log.error("error >> {}",e.getMessage());
+                        if(HealthEntity.getInstance().isFlag()){
+                            try{
+                                exeu(obj);
+                            }catch(Exception a){
+                                log.error("exeu run error >> {}",a.getMessage());
+                            }
+                        }
                     }
-                }
+
             }
         }, firstTime, HealthEntity.getInstance().getPeriod());
     }
