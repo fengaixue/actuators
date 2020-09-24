@@ -34,7 +34,7 @@ public class MonitoringApi {
      * @return
      */
     @GetMapping("/api/setHealthEntity")
-    public String setHealthEntity(Long StartInterva, String cmdPath, String remotHost,Boolean flag){
+    public String setHealthEntity(Long StartInterva, String cmdPath, String remotHost,Boolean flag,Integer readTimeout,Integer connectTimeout){
          HealthEntity healthEntity = HealthEntity.getInstance();
          if(StartInterva != null && StartInterva > 0){
              healthEntity.setStartInterva(StartInterva);
@@ -48,7 +48,12 @@ public class MonitoringApi {
          if(StringUtils.isNotBlank(remotHost)){
             healthEntity.setRemotHost(remotHost);
          }
-
+        if(readTimeout != null && readTimeout > 0){
+            healthEntity.setReadTimeout(readTimeout);
+        }
+        if(connectTimeout != null && connectTimeout > 0){
+            healthEntity.setConnectTimeout(connectTimeout);
+        }
         return "操作成功";
     }
 }

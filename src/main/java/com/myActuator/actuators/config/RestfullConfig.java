@@ -1,5 +1,6 @@
 package com.myActuator.actuators.config;
 
+import com.myActuator.actuators.component.health.HealthEntity;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -28,6 +29,13 @@ import java.security.cert.X509Certificate;
 @Configuration
 public class RestfullConfig {
 
+
+    public RestfullConfig(){
+        HealthEntity healthEntity = HealthEntity.getInstance();
+        healthEntity.setConnectTimeout(60 * 1000 * 3);
+        healthEntity.setReadTimeout(60 * 1000 * 3);
+    }
+
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory){
         return new RestTemplate(factory);
@@ -35,8 +43,8 @@ public class RestfullConfig {
     @Bean
     public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-        factory.setConnectTimeout(60 * 1000 * 1);
-        factory.setReadTimeout(5000);
+        factory.setConnectTimeout( HealthEntity.getInstance().getConnectTimeout());
+        factory.setReadTimeout( HealthEntity.getInstance().getReadTimeout());
         return factory;
     }
 }

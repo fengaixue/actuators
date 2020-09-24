@@ -50,6 +50,14 @@ public class HealthEntity {
     @Getter
     @Setter
     private boolean flag;
+    /** **/
+    @Getter
+    @Setter
+    private Integer readTimeout;
+    /** **/
+    @Getter
+    @Setter
+    private Integer connectTimeout;
 
     public static HealthEntity getInstance() {
         return InnerClass.healthEntity;
