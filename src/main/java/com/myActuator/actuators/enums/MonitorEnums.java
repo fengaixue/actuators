@@ -54,7 +54,7 @@ public final class MonitorEnums {
     /**
      * 运行标记
      */
-    public static final boolean FLAG = true;
+    public static final boolean FLAG = false;
     /**
      * 默认设置JVM大小 2G
      */
@@ -69,5 +69,11 @@ public final class MonitorEnums {
      * 开销比例
      */
     public static final Double CASTCPU = 0.8;
+
+
+    /**
+     * 初始化菜单项
+     * */
+    public static final String MENUS = "[{\"name\":\"本地平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9099\"},{\"name\":\"云端平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9099\"}]";
 
 }

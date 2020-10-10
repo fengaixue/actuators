@@ -1,10 +1,13 @@
 package com.myActuator.actuators.component.health;
 
+import com.myActuator.actuators.model.Menus;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <h1> 配置参数实体类 </h1>
@@ -83,6 +86,14 @@ public class HealthEntity {
     @Getter
     @Setter
     private String remotHostCpu;
+
+
+    /*
+     * 菜单数据
+     * */
+    @Getter
+    @Setter
+    private List<Object> menus;
 
 
     public static HealthEntity getInstance() {

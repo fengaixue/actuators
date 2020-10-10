@@ -1,19 +1,28 @@
 package com.myActuator.actuators;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import com.alibaba.fastjson.JSON;
+import com.myActuator.actuators.component.health.HealthEntity;
+import com.myActuator.actuators.enums.MonitorEnums;
+import com.myActuator.actuators.model.Menus;
+import org.json.simple.JSONArray;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.util.List;
+
 @Configuration
 @SpringBootApplication
-@EnableAdminServer
 @EnableScheduling
 public class ActuatorsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ActuatorsApplication.class, args);
-	}
 
+		SpringApplication.run(ActuatorsApplication.class, args);
+		initData();
+	}
+	public static void initData(){
+		HealthEntity.getInstance().setMenus(JSON.parseArray(MonitorEnums.MENUS));
+	}
 }

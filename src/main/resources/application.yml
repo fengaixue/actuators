@@ -3,6 +3,19 @@ server:
 spring:
   application:
     name: AdminUi-Server
+  freemarker:
+    allow-session-override : true
+    allow-request-override: true
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    request-context-attribute: request
+    suffix: .ftl
+    template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: E:/actuators/logs2
+log2path: D:/actuators/logs2
