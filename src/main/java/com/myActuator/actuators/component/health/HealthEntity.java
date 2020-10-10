@@ -59,6 +59,32 @@ public class HealthEntity {
     @Setter
     private Integer connectTimeout;
 
+    /** JVM设置的可用内存 **/
+    @Getter
+    @Setter
+    private Long jvmmMaxSize;
+
+    /** 开销 **/
+    @Getter
+    @Setter
+    private Double cast;
+
+    /** 开销 **/
+    @Getter
+    @Setter
+    private Double castCpu;
+
+    /**  **/
+    @Getter
+    @Setter
+    private String remotHostJvm;
+
+    /**  **/
+    @Getter
+    @Setter
+    private String remotHostCpu;
+
+
     public static HealthEntity getInstance() {
         return InnerClass.healthEntity;
     }
