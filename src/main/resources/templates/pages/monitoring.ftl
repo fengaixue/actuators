@@ -41,9 +41,9 @@
     ***********************************-->
     <div class="nav-header">
         <a href="index.html" class="brand-logo">
-            <img class="logo-abbr" src="/images/logo.png" alt="">
-            <img class="logo-compact" src="/images/logo-text.png" alt="">
-            <img class="brand-title" src="/images/logo-text.png" alt="">
+            <img class="logo-abbr" src="/images/abc2.png" alt="">
+            <img class="logo-compact" src="/images/abc.png" alt="">
+            <img class="brand-title" src="/images/abc.png" alt="">
         </a>
 
         <div class="nav-control">
@@ -166,49 +166,49 @@
                                             <a-tag color="green">startInterva</a-tag>
                                         </td>
                                         <td>重启时间间隔</td>
-                                        <td><span ></span> 秒</td>
+                                        <td><span >${healthEntity.startInterva}</span> 毫秒</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="green">period</a-tag>
                                         </td>
                                         <td>循环周期</td>
-                                        <td><span ></span> 秒</td>
+                                        <td><span >${healthEntity.period}</span> 毫秒</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">FLAG</a-tag>
                                         </td>
                                         <td>开启开关</td>
-                                        <td><span ></span></td>
+                                        <td><span >${healthEntity.flag?string("true","flase")}</span></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">JVMSIZE</a-tag>
                                         </td>
                                         <td>设置的JVM总大小</td>
-                                        <td><span ></span> 字节</td>
+                                        <td><span ></span>${healthEntity.jvmmMaxSize}字节</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CAST</a-tag>
                                         </td>
                                         <td>已使用JVM峰值占比(超出后重启)</td>
-                                        <td><span></span> %</td>
+                                        <td><span>${healthEntity.cast}</span></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CASTCPU</a-tag>
                                         </td>
                                         <td>已使用CPU峰值占比(超出后重启)</td>
-                                        <td><span></span> MB</td>
+                                        <td><span>${healthEntity.castCpu}</span></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CMDPATH</a-tag>
                                         </td>
                                         <td>重启bat路径</td>
-                                        <td><span id=""></span></td>
+                                        <td><span id="">${healthEntity.cmdPath}</span></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -292,20 +292,6 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a-tag color="cyan">jvm.buffer.memory.used</a-tag>
-                                        </td>
-                                        <td>JVM 缓冲区已用内存</td>
-                                        <td><span id="jvm-buffer-memory-used"></span> MB</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a-tag color="cyan">jvm.buffer.count</a-tag>
-                                        </td>
-                                        <td>当前缓冲区数量</td>
-                                        <td><span id="jvm-buffer-count"></span> 个</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
                                             <a-tag color="green">jvm.threads.daemon</a-tag>
                                         </td>
                                         <td>JVM 守护线程数量</td>
@@ -324,20 +310,6 @@
                                         </td>
                                         <td>JVM 峰值线程数量</td>
                                         <td><span id="jvm-threads-peak"></span> 个</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a-tag color="orange">jvm.classes.loaded</a-tag>
-                                        </td>
-                                        <td>JVM 已加载 Class 数量</td>
-                                        <td><span id="jvm-classes-loaded"></span> 个</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a-tag color="orange">jvm.classes.unloaded</a-tag>
-                                        </td>
-                                        <td>JVM 未加载 Class 数量</td>
-                                        <td><span id="jvm-classes-unloaded"></span> 个</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -366,20 +338,6 @@
                                         </td>
                                         <td>FullGC 时, 老年代的内存空间</td>
                                         <td><span id="jvm-gc-live-data-size"></span> MB</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a-tag color="blue">jvm.gc.pause.count</a-tag>
-                                        </td>
-                                        <td>系统启动以来GC 次数</td>
-                                        <td><span id="jvm-gc-pause-count"></span> 次</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a-tag color="blue">jvm.gc.pause.totalTime</a-tag>
-                                        </td>
-                                        <td>系统启动以来GC 总耗时</td>
-                                        <td><span id="jvm-gc-pause-total-time"></span> 秒</td>
                                     </tr>
                                     </tbody>
                                 </table>

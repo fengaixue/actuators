@@ -32,6 +32,7 @@ public class MonitoringController {
         model.addAttribute("menus",HealthEntity.getInstance().getMenus());
         model.addAttribute("hrefA",hrefA);
         model.addAttribute("hrefH",hrefH);
+        model.addAttribute("healthEntity",HealthEntity.getInstance());
         return "/pages/monitoring";
     }
 

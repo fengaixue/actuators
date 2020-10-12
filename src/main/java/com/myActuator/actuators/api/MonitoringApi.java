@@ -40,7 +40,7 @@ public class MonitoringApi {
     public String setHealthEntity(Long StartInterva, String cmdPath,
                                   String remotHost,Boolean flag,Integer readTimeout,
                                   Integer connectTimeout,Double cast,Long jvmmMaxSize,
-                                  String remotHost2,Double castCpu,String remotHost3){
+                                  String remotHost2,Double castCpu,String remotHost3, String menus){
          HealthEntity healthEntity = HealthEntity.getInstance();
          if(StartInterva != null && StartInterva > 0){
              healthEntity.setStartInterva(StartInterva);
@@ -74,6 +74,9 @@ public class MonitoringApi {
         }
         if(StringUtils.isNotBlank(remotHost3)){
             healthEntity.setRemotHostCpu(remotHost3);
+        }
+        if(StringUtils.isNotBlank(menus)){
+            healthEntity.setMenus(JSON.parseArray(menus));
         }
         return "操作成功";
     }
