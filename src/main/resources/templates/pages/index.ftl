@@ -45,7 +45,7 @@
             <img class="logo-compact" src="/images/abc.png" alt="">
             <img class="brand-title" src="/images/abc.png" alt="">
         </a>
-        <div class="nav-control">
+        <div class="nav-control">Developed
             <div class="hamburger">
                 <span class="line"></span><span class="line"></span><span class="line"></span>
             </div>
@@ -161,7 +161,7 @@
     ***********************************-->
     <div class="footer">
         <div class="copyright">
-            <p>Copyright © Designed &amp; Developed by <a href="" target="_blank">北矿智云科技（北京）有限公司</a> 2020</p>
+            <p>Developed by <a href="" target="_blank">北矿智云科技（北京）有限公司</a> 2020</p>
         </div>
     </div>
     <!--**********************************

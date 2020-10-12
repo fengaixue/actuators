@@ -358,7 +358,7 @@
     ***********************************-->
     <div class="footer">
         <div class="copyright">
-            <p>Copyright © Designed &amp; Developed by <a href="" target="_blank">北矿智云科技（北京）有限公司</a> 2020</p>
+            <p>Developed by <a href="" target="_blank">北矿智云科技（北京）有限公司</a> 2020</p>
         </div>
     </div>
     <!--**********************************
