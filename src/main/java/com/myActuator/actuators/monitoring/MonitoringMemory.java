@@ -5,17 +5,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.myActuator.actuators.component.health.HealthEntity;
 import com.myActuator.actuators.enums.MonitorEnums;
-import com.myActuator.actuators.model.Measurements;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.Resource;
-import java.io.IOException;
-import java.net.ConnectException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -71,18 +65,17 @@ public class MonitoringMemory implements CommandLineRunner {
     //actuator/metrics/jvm.gc.live.data.size
     @Override
     public void run(String... args) throws Exception {
-        Object obj=new Object();
+      /*  Object obj=new Object();
         log.info("获取健康数据线程启动。。。。");
         Calendar calendar = Calendar.getInstance();
         Date firstTime = calendar.getTime();
-
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 try {
                     String jsonStr = restTemplate.getForObject(HealthEntity.getInstance().getRemotHostJvm(), String.class);
-                    //log.info("当前值：{}",jsonStr);
+                    //log.info("当前JVM值：{}",jsonStr);
                     JSONObject jsonObject = JSON.parseObject(jsonStr);
                     JSONArray measurements = jsonObject.getJSONArray("measurements");
                     if(measurements != null){
@@ -94,11 +87,12 @@ public class MonitoringMemory implements CommandLineRunner {
                                 exeu(obj);
                             }
                         }
-                        /*else{
+                        *//*else{
                             log.info("info:*****{}",usedJvm);
-                        }*/
+                        }*//*
                     }
-                 String jsonStrCpu = restTemplate.getForObject(HealthEntity.getInstance().getRemotHostCpu(), String.class);
+                    String jsonStrCpu = restTemplate.getForObject(HealthEntity.getInstance().getRemotHostCpu(), String.class);
+                    //log.info("当前cpu值：{}",jsonStrCpu);
                     JSONObject jsonObjectCpu = JSON.parseObject(jsonStrCpu);
                     JSONArray measurementsCpu = jsonObjectCpu.getJSONArray("measurements");
                     if(measurementsCpu != null){
@@ -119,7 +113,7 @@ public class MonitoringMemory implements CommandLineRunner {
                 }
 
             }
-        }, firstTime, HealthEntity.getInstance().getPeriod());
+        }, firstTime, HealthEntity.getInstance().getPeriod());*/
     }
  /*   @Override
     public void run(String... args) throws Exception {

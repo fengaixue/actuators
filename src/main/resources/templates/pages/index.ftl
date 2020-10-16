@@ -45,7 +45,7 @@
             <img class="logo-compact" src="/images/abc.png" alt="">
             <img class="brand-title" src="/images/abc.png" alt="">
         </a>
-        <div class="nav-control">Developed
+        <div class="nav-control">
             <div class="hamburger">
                 <span class="line"></span><span class="line"></span><span class="line"></span>
             </div>
@@ -107,7 +107,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <#list menus as menu >
-                            <li><a href="/monitoring/${menu.hrefA}/${menu.hrefH}">${menu.name}</a></li>
+                            <li><a href="/monitoring?hrefA=${menu.hrefA}&hrefH=${menu.hrefH}">${menu.name}</a></li>
                         </#list>
                     </ul>
                 </li>

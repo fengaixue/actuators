@@ -13,23 +13,23 @@ public final class MonitorEnums {
     /**
      * bat 执行方法和路径
      */
-    public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
-    //public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
+    //public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
+    public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST = "http://localhost:9299/actuator/health";
+    public  static final String REMOTHOST = "http://localhost:9099/actuator/health";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST2 = "http://localhost:9299/actuator/metrics/jvm.memory.used";
+    public  static final String REMOTHOST2 = "http://localhost:9099/actuator/metrics/jvm.memory.used";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST3 = "http://localhost:9299/actuator/metrics/process.cpu.usage";
+    public  static final String REMOTHOST3 = "http://localhost:9099/actuator/metrics/process.cpu.usage";
 
     /**
      * 主状态 KEY
@@ -49,12 +49,12 @@ public final class MonitorEnums {
     /**
      * 启动间隔
      */
-    public  static final long startInterva = 1000 * 60 *  10;
+    public  static final long startInterva = 1000 * 60 *  5;
 
     /**
      * 运行标记
      */
-    public static final boolean FLAG = false;
+    public static final boolean FLAG = true;
     /**
      * 默认设置JVM大小 2G
      */
@@ -63,17 +63,18 @@ public final class MonitorEnums {
     /**
      * 开销比例
      */
-    public static final Double CAST = 0.8;
+    public static final Double CAST = 0.85;
 
     /**
      * 开销比例
      */
-    public static final Double CASTCPU = 0.8;
+    public static final Double CASTCPU = 0.9;
 
 
     /**
      * 初始化菜单项
      * */
-    public static final String MENUS = "[{\"name\":\"本地平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9099\"},{\"name\":\"云端平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9099\"}]";
+    public static final String MENUS = "[{\"name\":\"10.51.130.14项目\",\"hrefH\":\"locahost:3001\",\"hrefA\":\"locahost:9199\"}]";
+    //public static final String MENUS = "[{\"name\":\"本地平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"},{\"name\":\"云端平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"}]";
 
 }

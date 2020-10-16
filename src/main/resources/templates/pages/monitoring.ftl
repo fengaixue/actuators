@@ -108,7 +108,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <#list menus as menu>
-                            <li><a href="/monitoring/${menu.hrefA}/${menu.hrefH}">${menu.name}</a></li>
+                            <li><a href="/monitoring?hrefA=${menu.hrefA}&hrefH=${menu.hrefH}">${menu.name}</a></li>
                         </#list>
                     </ul>
                 </li>
@@ -158,6 +158,7 @@
                                         <th>参数</th>
                                         <th>描述</th>
                                         <th>当前值</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -166,49 +167,72 @@
                                             <a-tag color="green">startInterva</a-tag>
                                         </td>
                                         <td>重启时间间隔</td>
-                                        <td><span >${healthEntity.startInterva}</span> 毫秒</td>
+                                        <td><span >${(healthEntity.startInterva)!}</span> 毫秒</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="green">period</a-tag>
                                         </td>
                                         <td>循环周期</td>
-                                        <td><span >${healthEntity.period}</span> 毫秒</td>
+                                        <td><span >${(healthEntity.period)!}</span> 毫秒</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">FLAG</a-tag>
                                         </td>
                                         <td>开启开关</td>
-                                        <td><span >${healthEntity.flag?string("true","flase")}</span></td>
+                                        <td><span >${(healthEntity.flag?string("true","false"))!}</span></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-success light sharp" data-toggle="dropdown">
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="javascript:void()" onclick="changeFlag(true)" >开启</a>
+                                                    <a class="dropdown-item" href="javascript:void()" onclick="changeFlag(false)">关闭</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">JVMSIZE</a-tag>
                                         </td>
                                         <td>设置的JVM总大小</td>
-                                        <td><span ></span>${healthEntity.jvmmMaxSize}字节</td>
+                                        <td><span ></span>${(healthEntity.jvmmMaxSize)!}字节</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CAST</a-tag>
                                         </td>
                                         <td>已使用JVM峰值占比(超出后重启)</td>
-                                        <td><span>${healthEntity.cast}</span></td>
+                                        <td><span>${(healthEntity.cast)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CASTCPU</a-tag>
                                         </td>
                                         <td>已使用CPU峰值占比(超出后重启)</td>
-                                        <td><span>${healthEntity.castCpu}</span></td>
+                                        <td><span>${(healthEntity.castCpu)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a-tag color="purple">CMDPATH</a-tag>
                                         </td>
                                         <td>重启bat路径</td>
-                                        <td><span id="">${healthEntity.cmdPath}</span></td>
+                                        <td><span id="">${(healthEntity.cmdPath)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -496,6 +520,20 @@
     function ajaxGetTodo(url,func){
         var host = "http://" + "${hrefA!}";//$("#remoteHost").val();
         $.get(host+url,func);
+    }
+    function changeFlag(flag){
+        $.ajax({
+            url:"/api/updateHealthEntity/param",
+            data:{
+                'flag' : flag
+            },
+            method:"post",
+            success:function (res) {
+                if(res.code){
+                    window.location.reload();
+                }
+            }
+        });
     }
 </script>
 

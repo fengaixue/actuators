@@ -3,10 +3,12 @@ package com.myActuator.actuators.api;
 import com.alibaba.fastjson.JSON;
 import com.myActuator.actuators.component.health.HealthEntity;
 import com.myActuator.actuators.enums.MonitorEnums;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 import sun.security.provider.ConfigFile;
 
 import java.io.*;
@@ -21,18 +23,25 @@ import java.util.Properties;
 @Controller
 public class MonitoringController {
 
-    @RequestMapping("/index")
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping("/")
     public String pageIndex(ModelMap model){
         model.addAttribute("menus",HealthEntity.getInstance().getMenus());
         System.out.println(JSON.toJSONString(HealthEntity.getInstance().getMenus()));
         return "/pages/index";
     }
-    @RequestMapping("/monitoring/{hrefA}/{hrefH}")
-    public String pageMonitor(@PathVariable("hrefA")String hrefA, @PathVariable("hrefH")String hrefH,ModelMap model){
+    @RequestMapping("/monitoring")
+    public String pageMonitor(String hrefA, String hrefH,ModelMap model){
         model.addAttribute("menus",HealthEntity.getInstance().getMenus());
         model.addAttribute("hrefA",hrefA);
         model.addAttribute("hrefH",hrefH);
-        model.addAttribute("healthEntity",HealthEntity.getInstance());
+        try {
+            model.addAttribute("healthEntity", restTemplate.getForObject( "http://"+ hrefH + "/api/healthEntity", HealthEntity.class));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return "/pages/monitoring";
     }
 

@@ -5,7 +5,11 @@ import com.myActuator.actuators.component.health.HealthEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <h1> 控制参数API  </h1>
@@ -79,6 +83,19 @@ public class MonitoringApi {
             healthEntity.setMenus(JSON.parseArray(menus));
         }
         return "操作成功";
+    }
+
+
+    @PostMapping("/api/updateHealthEntity/param")
+    @ResponseBody
+    public Map<String,Object> updateHealthEntity(Boolean flag){
+        HealthEntity healthEntity = HealthEntity.getInstance();
+        if(flag != null){
+            healthEntity.setFlag(flag);
+        }
+        Map<String,Object> res = new HashMap<>();
+        res.put("code",true);
+        return res;
     }
 
 
