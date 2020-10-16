@@ -1,6 +1,8 @@
 package com.myActuator.actuators.api;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.myActuator.actuators.component.health.HealthEntity;
 import com.myActuator.actuators.enums.MonitorEnums;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +43,14 @@ public class MonitoringController {
         model.addAttribute("hrefH",hrefH);
         try {
             model.addAttribute("healthEntity", restTemplate.getForObject( "http://"+ hrefH + "/api/healthEntity", HealthEntity.class));
+            model.addAttribute("systemCpuCount",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/system.cpu.count", String.class));
+            model.addAttribute("systemCpuUsage",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/system.cpu.usage", String.class));
+            model.addAttribute("processStartTime",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/process.start.time", String.class));
+            model.addAttribute("processUptime",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/process.uptime", String.class));
+            model.addAttribute("processCpuUsage",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/process.cpu.usage", String.class));
+            model.addAttribute("jvmMemoryMax",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/jvm.memory.max", String.class));
+            model.addAttribute("jvmMemoryCommitted",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/jvm.memory.committed", String.class));
+            model.addAttribute("jvmMemoryUsed",restTemplate.getForObject("http://"+ hrefA + "/actuator/metrics/jvm.memory.used", String.class));
         }catch(Exception e){
            log.error(e.getMessage());
         }
