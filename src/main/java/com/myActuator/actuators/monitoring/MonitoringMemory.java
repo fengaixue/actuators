@@ -65,7 +65,7 @@ public class MonitoringMemory implements CommandLineRunner {
     //actuator/metrics/jvm.gc.live.data.size
     @Override
     public void run(String... args) throws Exception {
-      /*  Object obj=new Object();
+        Object obj=new Object();
         log.info("获取健康数据线程启动。。。。");
         Calendar calendar = Calendar.getInstance();
         Date firstTime = calendar.getTime();
@@ -87,9 +87,7 @@ public class MonitoringMemory implements CommandLineRunner {
                                 exeu(obj);
                             }
                         }
-                        *//*else{
-                            log.info("info:*****{}",usedJvm);
-                        }*//*
+
                     }
                     String jsonStrCpu = restTemplate.getForObject(HealthEntity.getInstance().getRemotHostCpu(), String.class);
                     //log.info("当前cpu值：{}",jsonStrCpu);
@@ -113,7 +111,7 @@ public class MonitoringMemory implements CommandLineRunner {
                 }
 
             }
-        }, firstTime, HealthEntity.getInstance().getPeriod());*/
+        }, firstTime, HealthEntity.getInstance().getPeriod());
     }
  /*   @Override
     public void run(String... args) throws Exception {

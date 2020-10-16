@@ -74,7 +74,7 @@ public final class MonitorEnums {
     /**
      * 初始化菜单项
      * */
-    public static final String MENUS = "[{\"name\":\"10.51.130.14项目\",\"hrefH\":\"locahost:3001\",\"hrefA\":\"locahost:9199\"}]";
-    //public static final String MENUS = "[{\"name\":\"本地平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"},{\"name\":\"云端平台项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"}]";
+    //public static final String MENUS = "[{\"name\":\"10.51.130.14项目\",\"hrefH\":\"locahost:3001\",\"hrefA\":\"locahost:9199\"}]";
+    public static final String MENUS = "[{\"name\":\"Mic-DASP1\",\"hrefH\":\"10.51.94.21:3001\",\"hrefA\":\"10.51.94.21:9199\"},{\"name\":\"Mic-DASP2\",\"hrefH\":\"10.51.94.22:3001\",\"hrefA\":\"10.51.94.22:9199\"},{\"name\":\"Mic-DASP3\",\"hrefH\":\"192.168.3.12:3001\",\"hrefA\":\"192.168.3.12:9099\"}]";
 
 }

@@ -103,7 +103,7 @@
                 <li>
                     <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                       <i class="flaticon-381-network"></i>
-                      <span class="nav-text">运行信息</span>
+                      <span class="nav-text">项目</span>
                     </a>
                     <ul aria-expanded="false">
                         <#list menus as menu >

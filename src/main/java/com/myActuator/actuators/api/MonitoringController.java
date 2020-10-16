@@ -3,6 +3,7 @@ package com.myActuator.actuators.api;
 import com.alibaba.fastjson.JSON;
 import com.myActuator.actuators.component.health.HealthEntity;
 import com.myActuator.actuators.enums.MonitorEnums;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +22,7 @@ import java.util.Properties;
  * @date 2020/10/10 10:03
  */
 @Controller
+@Slf4j
 public class MonitoringController {
 
     @Autowired
@@ -40,7 +42,7 @@ public class MonitoringController {
         try {
             model.addAttribute("healthEntity", restTemplate.getForObject( "http://"+ hrefH + "/api/healthEntity", HealthEntity.class));
         }catch(Exception e){
-            e.printStackTrace();
+           log.error(e.getMessage());
         }
         return "/pages/monitoring";
     }
