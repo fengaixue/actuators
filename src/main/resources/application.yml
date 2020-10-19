@@ -18,4 +18,11 @@ spring:
     template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: D:/actuators/logs2
+log2path: E:/actuators/logs2
+# email 配置
+email:
+  config:
+    myAddress: li369436113@163.com
+    passwordEmail: li123456
+    addresss: 369436113@qq.com,liguofeng@bksmartmining.com
+    monitorEmailTemplate: /pages/email/monitorEmail.ftl

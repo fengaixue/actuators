@@ -1,21 +1,19 @@
 package com.myActuator.actuators.api;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.myActuator.actuators.component.health.HealthEntity;
-import com.myActuator.actuators.enums.MonitorEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-import sun.security.provider.ConfigFile;
 
-import java.io.*;
-import java.util.Properties;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <h1> 监控页面调整 </h1>
@@ -29,6 +27,9 @@ public class MonitoringController {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private MonitoringEmail monitoringEmail;
+
 
     @RequestMapping("/")
     public String pageIndex(ModelMap model){
@@ -57,6 +58,13 @@ public class MonitoringController {
         return "/pages/monitoring";
     }
 
-
+   @GetMapping("/sendEmail")
+   public void sendEmail(String startTime,String server, String msg){
+       Map params = new HashMap();
+       params.put("startTime",startTime);
+       params.put("server", server);
+       params.put("msg", msg);
+       monitoringEmail.templet("健康监控服务通知",params);
+   }
 
 }
