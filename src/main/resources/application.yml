@@ -18,4 +18,4 @@ spring:
     template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: D:/actuators/logs2
+log2path: E:/actuators/logs2

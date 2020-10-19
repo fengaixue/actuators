@@ -13,23 +13,23 @@ public final class MonitorEnums {
     /**
      * bat 执行方法和路径
      */
-    //public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
-    public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
+    public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
+    //public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST = "http://localhost:9099/actuator/health";
+    public  static final String REMOTHOST = "http://localhost:9199/actuator/health";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST2 = "http://localhost:9099/actuator/metrics/jvm.memory.used";
+    public  static final String REMOTHOST2 = "http://localhost:9199/actuator/metrics/jvm.memory.used";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST3 = "http://localhost:9099/actuator/metrics/process.cpu.usage";
+    public  static final String REMOTHOST3 = "http://localhost:9199/actuator/metrics/process.cpu.usage";
 
     /**
      * 主状态 KEY
@@ -74,7 +74,7 @@ public final class MonitorEnums {
     /**
      * 初始化菜单项
      * */
-    //public static final String MENUS = "[{\"name\":\"10.51.130.14项目\",\"hrefH\":\"locahost:3001\",\"hrefA\":\"locahost:9199\"}]";
-    public static final String MENUS = "[{\"name\":\"Mic-DASP1\",\"hrefH\":\"10.51.94.21:3001\",\"hrefA\":\"10.51.94.21:9199\"},{\"name\":\"Mic-DASP2\",\"hrefH\":\"10.51.94.22:3001\",\"hrefA\":\"10.51.94.22:9199\"},{\"name\":\"Mic-DASP3\",\"hrefH\":\"192.168.3.12:3001\",\"hrefA\":\"192.168.3.12:9099\"}]";
+    public static final String MENUS = "[{\"name\":\"本机项目\",\"hrefH\":\"locahost:3001\",\"hrefA\":\"locahost:9199\"}]";
+    //public static final String MENUS = "[{\"name\":\"Mic-DASP1\",\"hrefH\":\"10.51.94.21:3001\",\"hrefA\":\"10.51.94.21:9199\"},{\"name\":\"Mic-DASP2\",\"hrefH\":\"10.51.94.22:3001\",\"hrefA\":\"10.51.94.22:9199\"},{\"name\":\"Mic-DASP3\",\"hrefH\":\"192.168.3.12:3001\",\"hrefA\":\"192.168.3.12:9099\"}]";
 
 }
