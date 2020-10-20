@@ -25,3 +25,7 @@ email:
     myAddress: li369436113@163.com
     passwordEmail: li123456
     monitorEmailTemplate: /pages/email/monitorEmail.ftl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka/
