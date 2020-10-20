@@ -58,11 +58,11 @@ public class MonitoringMemory implements CommandLineRunner {
             info.put("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             info.put("server", "10.51.94.21");
             info.put("msg", "健康监控程序重启了平台服务");
-            restTemplate.getForObject("http://10.51.130.14/sendEmail", String.class, info);
-            //休息10分钟 用于启动项目时间
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
+            String res =  restTemplate.getForObject("http://10.51.130.14:3001/sendEmail", String.class, info);
+            log.info("***######[{}]#########***",res);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("本机执行exeu方法出错，信息：{}",e.getMessage());
         }
 
     }
