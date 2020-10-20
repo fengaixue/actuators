@@ -63,7 +63,7 @@ public class MonitoringMemory implements CommandLineRunner {
             String msg = "健康监控程序重启了平台服务";
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
             try{
-                String res =  restTemplate.getForObject(String.format("http://10.51.130.14:3001/sendEmail?startTime=%s&server=%s&msg=%s",startTime,server,msg), String.class);
+                String res =  restTemplate.getForObject(String.format("http://localhost:3001/sendEmail?startTime=%s&server=%s&msg=%s",startTime,server,msg), String.class);
                 log.info("***######[{}]#########***",res);
             }catch(Exception e){
                 log.error("本机调用发送邮件接口方法出错，信息：{}",e.getMessage());
