@@ -65,6 +65,7 @@ public class MonitoringController {
             params.put("startTime",startTime);
             params.put("server", server);
             params.put("msg", msg);
+            log.info(JSON.toJSONString(params));
             monitoringEmail.templet("健康监控服务通知",params);
             return "已发送";
         }catch(Exception e){
