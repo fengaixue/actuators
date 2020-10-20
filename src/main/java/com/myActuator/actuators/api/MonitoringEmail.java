@@ -1,7 +1,9 @@
 package com.myActuator.actuators.api;
 
+import com.myActuator.actuators.component.health.HealthEntity;
 import com.sun.mail.util.MailSSLSocketFactory;
 import freemarker.template.Template;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -28,12 +30,11 @@ import java.util.Properties;
  * @date 2020/10/19 14:48
  */
 @Component
+@Slf4j
 public class MonitoringEmail {
 
     @Value ("${email.config.myAddress}")
     private  String   myAddress;
-    @Value ("${email.config.addresss}")
-    private  String addresss;
     @Value ("${email.config.passwordEmail}")
     private  String passwordEmail;
     @Value ("${email.config.monitorEmailTemplate}")
@@ -58,13 +59,12 @@ public class MonitoringEmail {
             //发件人地址
             msg.setFrom(new InternetAddress(myAddress));
             //设置收件人,to为收件人,cc为抄送,bcc为密送
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresss, false));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(HealthEntity.getInstance().getAddresss(), false));
             //设置主题
             msg.setSubject(title);
             msg.setSentDate(new Date());
             //邮件模板设置
-            Template template = null;
-                template = configurer.getConfiguration().getTemplate(monitorEmailTemplate);
+            Template template = configurer.getConfiguration().getTemplate(monitorEmailTemplate);
             Map<String, Object> model = new HashMap<>();
             model.put("params", params);
             String text = null;
@@ -76,9 +76,9 @@ public class MonitoringEmail {
             msg.setContent(mp);
             msg.saveChanges();
             Transport.send(msg);
-            System.out.println("**----**邮件发送成功");
+            log.info( "**----**邮件发送成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("发送邮件方法出错templet(),信息：{}",e.getMessage());
         }
 
     }

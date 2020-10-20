@@ -22,7 +22,12 @@ public class ActuatorsApplication {
 		SpringApplication.run(ActuatorsApplication.class, args);
 		initData();
 	}
+
+	/**
+	 * 全局初始化参数
+	 */
 	public static void initData(){
 		HealthEntity.getInstance().setMenus(JSON.parseArray(MonitorEnums.MENUS));
+		HealthEntity.getInstance().setAddresss(MonitorEnums.emails);
 	}
 }

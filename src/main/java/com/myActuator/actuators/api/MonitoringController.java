@@ -59,12 +59,19 @@ public class MonitoringController {
     }
 
    @GetMapping("/sendEmail")
-   public void sendEmail(String startTime,String server, String msg){
-       Map params = new HashMap();
-       params.put("startTime",startTime);
-       params.put("server", server);
-       params.put("msg", msg);
-       monitoringEmail.templet("健康监控服务通知",params);
+   public String sendEmail(String startTime,String server, String msg){
+        try{
+            Map params = new HashMap();
+            params.put("startTime",startTime);
+            params.put("server", server);
+            params.put("msg", msg);
+            monitoringEmail.templet("健康监控服务通知",params);
+            return "已发送";
+        }catch(Exception e){
+            log.error("发送邮件接口被调用方法出错sendEmail(),信息：{}",e.getMessage());
+            return "发送失败";
+        }
+
    }
 
 }

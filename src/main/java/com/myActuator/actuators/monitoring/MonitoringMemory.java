@@ -59,12 +59,12 @@ public class MonitoringMemory implements CommandLineRunner {
             log.info("健康监控程序*****===》启动了Bat,并发送了邮件,时间：{}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             Map<String, String> params = new HashMap<>();
             params.put("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            params.put("server", "10.51.130.14");
+            params.put("server", "本第服务");
             params.put("msg", "健康监控程序重启了平台服务");
-            monitoringEmail.templet("健康监控服务通知", params);
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
+            monitoringEmail.templet("健康监控服务通知", params);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("本机exeu方法出错exeu(),信息：{}",e.getMessage());
         }
     }
 

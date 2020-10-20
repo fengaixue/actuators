@@ -95,6 +95,13 @@ public class HealthEntity {
     @Setter
     private List<Object> menus;
 
+    /**
+     * 邮件列表
+     */
+    @Getter
+    @Setter
+    private String addresss;
+
 
     public static HealthEntity getInstance() {
         return InnerClass.healthEntity;
