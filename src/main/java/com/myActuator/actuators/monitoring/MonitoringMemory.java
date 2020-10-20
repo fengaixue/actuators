@@ -20,7 +20,7 @@ import java.util.*;
  * @author 风清扬
  * @date 2020/09/16 16:46
  */
-//@Component
+@Component
 @Slf4j
 public class MonitoringMemory implements CommandLineRunner {
 
@@ -62,7 +62,11 @@ public class MonitoringMemory implements CommandLineRunner {
             params.put("server", "本第服务");
             params.put("msg", "健康监控程序重启了平台服务");
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
-            monitoringEmail.templet("健康监控服务通知", params);
+            try{
+                monitoringEmail.templet("健康监控服务通知", params);
+            }catch(Exception e){
+                log.error("本机执行发送邮件方法出错，信息：{}",e.getMessage());
+            }
         } catch (Exception e) {
             log.error("本机exeu方法出错exeu(),信息：{}",e.getMessage());
         }
