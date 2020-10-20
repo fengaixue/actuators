@@ -19,17 +19,17 @@ public final class MonitorEnums {
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST = "http://localhost:9199/actuator/health";
+    public  static final String REMOTHOST = "http://localhost:9099/actuator/health";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST2 = "http://localhost:9199/actuator/metrics/jvm.memory.used";
+    public  static final String REMOTHOST2 = "http://localhost:9099/actuator/metrics/jvm.memory.used";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST3 = "http://localhost:9199/actuator/metrics/process.cpu.usage";
+    public  static final String REMOTHOST3 = "http://localhost:9099/actuator/metrics/process.cpu.usage";
 
     /**
      * 主状态 KEY
