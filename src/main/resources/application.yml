@@ -1,5 +1,5 @@
 server:
-  port: 3002
+  port: 3001
 spring:
   application:
     name: AdminUi-Server
@@ -18,4 +18,4 @@ spring:
     template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: D:/actuators/logs2
+log2path: E:/actuators/logs2
