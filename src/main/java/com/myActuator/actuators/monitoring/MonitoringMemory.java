@@ -54,12 +54,15 @@ public class MonitoringMemory implements CommandLineRunner {
             Process ps = Runtime.getRuntime().exec(HealthEntity.getInstance().getCmdPath());
             ps.waitFor();
             log.info("健康监控程序*****===》启动了Bat,并发送了邮件,时间：{}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            Map<String, String> info = new HashMap<>();
-            info.put("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            info.put("server", "10.51.94.21");
-            info.put("msg", "健康监控程序重启了平台服务");
+            //Map<String, String> info = new HashMap<>();
+            //info.put("server", "10.51.94.21");
+            //info.put("msg", "健康监控程序重启了平台服务");
+            //info.put("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String server = "10.51.94.21";
+            String msg = "健康监控程序重启了平台服务";
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
-            String res =  restTemplate.getForObject("http://10.51.130.14:3001/sendEmail", String.class, info);
+            String res =  restTemplate.getForObject(String.format("http://10.51.130.14:3001/sendEmail?startTime={}&server={}&msg={}",startTime,server,msg), String.class);
             log.info("***######[{}]#########***",res);
         } catch (Exception e) {
             log.error("本机执行exeu方法出错，信息：{}",e.getMessage());
