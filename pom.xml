@@ -131,7 +131,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>local213001</finalName>
+		<finalName>local3002</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

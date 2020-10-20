@@ -13,8 +13,8 @@ public final class MonitorEnums {
     /**
      * bat 执行方法和路径
      */
-    public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
-    //public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
+    //public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
+    public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
 
     /**
      * 需要监控的项目的地址
@@ -74,7 +74,7 @@ public final class MonitorEnums {
     /**
      * 初始化菜单项
      * */
-    public static final String MENUS = "[{\"name\":\"本机项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"}]";
+    public static final String MENUS = "[{\"name\":\"本机项目\",\"hrefH\":\"localhost:3002\",\"hrefA\":\"localhost:9099\"}]";
     //public static final String MENUS = "[{\"name\":\"Mic-DASP1\",\"hrefH\":\"10.51.94.21:3001\",\"hrefA\":\"10.51.94.21:9199\"},{\"name\":\"Mic-DASP2\",\"hrefH\":\"10.51.94.22:3001\",\"hrefA\":\"10.51.94.22:9199\"},{\"name\":\"Mic-DASP3\",\"hrefH\":\"192.168.3.12:3001\",\"hrefA\":\"192.168.3.12:9099\"}]";
 
 }
