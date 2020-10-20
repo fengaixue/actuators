@@ -52,7 +52,7 @@ public final class MonitorEnums {
     /**
      * 运行标记
      */
-    public static final boolean FLAG = true;
+    public static final boolean FLAG = false;
     /**
      * 默认设置JVM大小 2G
      */

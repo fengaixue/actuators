@@ -20,7 +20,7 @@ import java.util.*;
  * @author 风清扬
  * @date 2020/09/16 16:46
  */
-@Component
+//@Component
 @Slf4j
 public class MonitoringMemory implements CommandLineRunner {
 
