@@ -6,6 +6,7 @@
         <artifactId>micloud.actuator</artifactId>
         <groupId>com.micloud.actuator</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,10 +15,6 @@
     <packaging>jar</packaging>
 
     <name>actuator-monitor</name>
-    <description>Eureka For Coupon</description>
-
-    <dependencies>
-    </dependencies>
 
     <build>
         <plugins>
