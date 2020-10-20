@@ -62,8 +62,12 @@ public class MonitoringMemory implements CommandLineRunner {
             String server = "10.51.94.21";
             String msg = "健康监控程序重启了平台服务";
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
-            String res =  restTemplate.getForObject(String.format("http://10.51.130.14:3001/sendEmail?startTime=%s&server=%s&msg=%s",startTime,server,msg), String.class);
-            log.info("***######[{}]#########***",res);
+            try{
+                String res =  restTemplate.getForObject(String.format("http://10.51.130.14:3001/sendEmail?startTime=%s&server=%s&msg=%s",startTime,server,msg), String.class);
+                log.info("***######[{}]#########***",res);
+            }catch(Exception e){
+                log.error("本机调用发送邮件接口方法出错，信息：{}",e.getMessage());
+            }
         } catch (Exception e) {
             log.error("本机执行exeu方法出错，信息：{}",e.getMessage());
         }
