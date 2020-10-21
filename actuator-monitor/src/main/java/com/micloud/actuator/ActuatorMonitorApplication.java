@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @SpringBootApplication
 @EnableScheduling
-@EnableEurekaClient
+//@EnableEurekaClient
 public class ActuatorMonitorApplication {
 
 	public static void main(String[] args) {

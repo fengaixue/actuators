@@ -1,8 +1,8 @@
 server:
-  port: 3001
+  port: 3002
 spring:
   application:
-    name: AdminUi-Server
+    name: View-Server
   freemarker:
     allow-session-override : true
     allow-request-override: true
@@ -18,10 +18,14 @@ spring:
     template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: E:/actuators/logs2
+log2path: F:/actuators/logs2
 # email 配置
 email:
   config:
     myAddress: li369436113@163.com
     passwordEmail: li123456
     monitorEmailTemplate: /pages/email/monitorEmail.ftl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka/
