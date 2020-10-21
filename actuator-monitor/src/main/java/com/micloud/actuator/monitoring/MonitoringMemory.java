@@ -3,7 +3,6 @@ package com.micloud.actuator.monitoring;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.micloud.actuator.api.MonitoringEmail;
 import com.micloud.actuator.component.health.HealthEntity;
 import com.micloud.actuator.enums.MonitorEnums;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +19,12 @@ import java.util.*;
  * @author 风清扬
  * @date 2020/09/16 16:46
  */
-//@Component
+@Component
 @Slf4j
 public class MonitoringMemory implements CommandLineRunner {
 
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
-    private MonitoringEmail monitoringEmail;
 
     /**
      * 初始化方法 设置循环周期、等待周期
@@ -57,19 +54,21 @@ public class MonitoringMemory implements CommandLineRunner {
             Process ps = Runtime.getRuntime().exec(HealthEntity.getInstance().getCmdPath());
             ps.waitFor();
             log.info("健康监控程序*****===》启动了Bat,并发送了邮件,时间：{}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            Map<String, String> params = new HashMap<>();
-            params.put("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            params.put("server", "本第服务");
-            params.put("msg", "健康监控程序重启了平台服务");
+            String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String server = "10.51.94.22";
+            String msg = "健康监控程序重启了平台服务";
             Thread.sleep(HealthEntity.getInstance().getStartInterva());
             try{
-                monitoringEmail.templet("健康监控服务通知", params);
+                String res =  restTemplate.getForObject(String.format("http://localhost:3001/sendEmail?startTime=%s&server=%s&msg=%s",startTime,server,msg), String.class);
+                log.info("***######[{}]#########***",res);
             }catch(Exception e){
-                log.error("本机执行发送邮件方法出错，信息：{}",e.getMessage());
+                e.printStackTrace();
+                log.error("本机调用发送邮件接口方法出错,信息：{}",e.getMessage());
             }
         } catch (Exception e) {
-            log.error("本机exeu方法出错exeu(),信息：{}",e.getMessage());
+            log.error("本机执行exeu方法出错，信息：{}",e.getMessage());
         }
+
     }
 
     @Override

@@ -40,7 +40,7 @@
         Nav header start
     ***********************************-->
     <div class="nav-header">
-        <a href="#" class="brand-logo">
+        <a href="index.html" class="brand-logo">
             <img class="logo-abbr" src="/images/abc2.png" alt="">
             <img class="logo-compact" src="/images/abc.png" alt="">
             <img class="brand-title" src="/images/abc.png" alt="">
@@ -155,38 +155,84 @@
                                 <table class="table">
                                     <thead class="thead-info">
                                     <tr>
+                                        <th>参数</th>
                                         <th>描述</th>
                                         <th>当前值</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <td>
+                                            <a-tag color="green">startInterva</a-tag>
+                                        </td>
                                         <td>重启时间间隔</td>
                                         <td><span >${(healthEntity.startInterva)!}</span> 毫秒</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <a-tag color="green">period</a-tag>
+                                        </td>
                                         <td>循环周期</td>
                                         <td><span >${(healthEntity.period)!}</span> 毫秒</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <a-tag color="purple">FLAG</a-tag>
+                                        </td>
                                         <td>开启开关</td>
                                         <td><span >${(healthEntity.flag?string("true","false"))!}</span></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-success light sharp" data-toggle="dropdown">
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="javascript:void()" onclick="changeFlag(true)" >开启</a>
+                                                    <a class="dropdown-item" href="javascript:void()" onclick="changeFlag(false)">关闭</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <a-tag color="purple">JVMSIZE</a-tag>
+                                        </td>
                                         <td>设置的JVM总大小</td>
                                         <td><span ></span>${(healthEntity.jvmmMaxSize)!}字节</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>设置的JVM峰值占比</td>
+                                        <td>
+                                            <a-tag color="purple">CAST</a-tag>
+                                        </td>
+                                        <td>已使用JVM峰值占比(超出后重启)</td>
                                         <td><span>${(healthEntity.cast)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>设置的CPU峰值占比</td>
+                                        <td>
+                                            <a-tag color="purple">CASTCPU</a-tag>
+                                        </td>
+                                        <td>已使用CPU峰值占比(超出后重启)</td>
                                         <td><span>${(healthEntity.castCpu)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>bat路径</td>
+                                        <td>
+                                            <a-tag color="purple">CMDPATH</a-tag>
+                                        </td>
+                                        <td>重启bat路径</td>
                                         <td><span id="">${(healthEntity.cmdPath)!}</span></td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -199,49 +245,123 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">本机应用运行信息</h4>
+                            <h4 class="card-title">运行信息</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="thead-info">
                                     <tr>
+                                        <th>参数</th>
                                         <th>描述</th>
                                         <th>当前值</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>本机CPU 数量</td>
-                                        <td><span id="system-cpu-count"></span>核</td>
+                                        <td>
+                                            <a-tag color="green">system.cpu.count</a-tag>
+                                        </td>
+                                        <td>CPU 数量</td>
+                                        <td><span id="system-cpu-count"></span> 核</td>
                                     </tr>
                                     <tr>
-                                        <td>本机系统 CPU 使用率</td>
-                                        <td><span id="system-cpu-usage"></span>%</td>
+                                        <td>
+                                            <a-tag color="green">system.cpu.usage</a-tag>
+                                        </td>
+                                        <td>系统 CPU 使用率</td>
+                                        <td><span id="system-cpu-usage"></span> %</td>
                                     </tr>
                                     <tr>
-                                        <td>本机应用启动时间</td>
+                                        <td>
+                                            <a-tag color="purple">process.start.time</a-tag>
+                                        </td>
+                                        <td>应用启动时间点</td>
                                         <td><span id="process-start-time"></span></td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <a-tag color="purple">process.uptime</a-tag>
+                                        </td>
                                         <td>应用已运行时间</td>
                                         <td><span id="process-uptime"></span> 秒</td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <a-tag color="purple">process.cpu.usage</a-tag>
+                                        </td>
                                         <td>当前应用 CPU 使用率</td>
-                                        <td><span id="process-cpu-usage"></span>%</td>
+                                        <td><span id="process-cpu-usage"></span> %</td>
                                     </tr>
                                     <tr>
-                                        <td>当前应用JVM最大内存</td>
+                                        <td>
+                                            <a-tag color="purple">jvm.memory.max</a-tag>
+                                        </td>
+                                        <td>JVM 最大内存</td>
                                         <td><span id="jvm-memory-max"></span> MB</td>
                                     </tr>
                                     <tr>
-                                        <td>当前应用JVM可用内存</td>
+                                        <td>
+                                            <a-tag color="purple">jvm.memory.committed</a-tag>
+                                        </td>
+                                        <td>JVM 可用内存</td>
                                         <td><span id="jvm-memory-committed"></span> MB</td>
                                     </tr>
                                     <tr>
-                                        <td>当前应用JVM已用内存</td>
-                                        <td><span id="jvm-memory-used"></span>MB</td>
+                                        <td>
+                                            <a-tag color="purple">jvm.memory.used</a-tag>
+                                        </td>
+                                        <td>JVM 已用内存</td>
+                                        <td><span id="jvm-memory-used"></span> MB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="green">jvm.threads.daemon</a-tag>
+                                        </td>
+                                        <td>JVM 守护线程数量</td>
+                                        <td><span id="jvm-threads-daemon"></span> 个</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="green">jvm.threads.live</a-tag>
+                                        </td>
+                                        <td>JVM 当前活跃线程数量</td>
+                                        <td><span id="jvm-threads-live"></span> 个</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="green">jvm.threads.peak</a-tag>
+                                        </td>
+                                        <td>JVM 峰值线程数量</td>
+                                        <td><span id="jvm-threads-peak"></span> 个</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="pink">jvm.gc.memory.allocated</a-tag>
+                                        </td>
+                                        <td>GC 时, 年轻代分配的内存空间</td>
+                                        <td><span id="jvm-gc-memory-allocated"></span> MB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="pink">jvm.gc.memory.promoted</a-tag>
+                                        </td>
+                                        <td>GC 时, 老年代分配的内存空间</td>
+                                        <td><span id="jvm-gc-memory-promoted"></span> MB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="pink">jvm.gc.max.data.size</a-tag>
+                                        </td>
+                                        <td>GC 时, 老年代的最大内存空间</td>
+                                        <td><span id="jvm-gc-max-data-size"></span> MB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a-tag color="pink">jvm.gc.live.data.size</a-tag>
+                                        </td>
+                                        <td>FullGC 时, 老年代的内存空间</td>
+                                        <td><span id="jvm-gc-live-data-size"></span> MB</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -303,22 +423,69 @@
      */
     function monitorInfo() {
         $("#dataTime").html("<span style='color:blue;'>数据获取时间  "+datefomate(new Date().getTime())+"</span>");
-        var systemCpuCount = ${systemCpuCount};
-        $("#system-cpu-count").html("<span>" + systemCpuCount.measurements[0].value + "</span>");
-        var systemCpuUsage2 = ${systemCpuUsage};
-        $("#system-cpu-usage").html("<span>" + sysConvert(systemCpuUsage2.measurements[0].value) + "</span>");
-        var processStartTime = JSON.parse('${processStartTime}');
-        $("#process-start-time").html("<span>" + datefomate(processStartTime.measurements[0].value * 1000) + "</span>");
-        var processUptime = JSON.parse('${processUptime}');
-        $("#process-uptime").html("<span>" + processUptime.measurements[0].value + "</span>");
-        var processCpuUsage = ${processCpuUsage};
-        $("#process-cpu-usage").html("<span>" + sysConvert(processCpuUsage.measurements[0].value) + "</span>");
-        var jvmMemoryMax = ${jvmMemoryMax};
-        $("#jvm-memory-max").html("<span>" + jvmConvert(jvmMemoryMax.measurements[0].value) + "</span>");
-        var jvmMemoryCommitted = ${jvmMemoryCommitted};
-        $("#jvm-memory-committed").html("<span>" + jvmConvert(jvmMemoryCommitted.measurements[0].value) + "</span>");
-        var jvmMemoryUsed = ${jvmMemoryUsed};
-        $("#jvm-memory-used").html("<span>" + jvmConvert(jvmMemoryUsed.measurements[0].value) + "</span>")
+        //服务器相关
+        ajaxGetTodo("/actuator/metrics/system.cpu.count", function (data) {
+            $("#system-cpu-count").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/system.cpu.usage", function (data) {
+            $("#system-cpu-usage").html("<span>" + sysConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/process.uptime", function (data) {
+            $("#process-uptime").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/process.start.time", function (data) {
+            $("#process-start-time").html("<span>" + datefomate(data.measurements[0].value * 1000) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/process.cpu.usage", function (data) {
+            $("#process-cpu-usage").html("<span>" + sysConvert(data.measurements[0].value) + "</span>")
+        });
+        //JVM相关
+        ajaxGetTodo("/actuator/metrics/jvm.memory.max", function (data) {
+            $("#jvm-memory-max").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.memory.committed", function (data) {
+            $("#jvm-memory-committed").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.memory.used", function (data) {
+            $("#jvm-memory-used").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.buffer.memory.used", function (data) {
+            $("#jvm-buffer-memory-used").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.buffer.count", function (data) {
+            $("#jvm-buffer-count").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.threads.daemon", function (data) {
+            $("#jvm-threads-daemon").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.threads.live", function (data) {
+            $("#jvm-threads-live").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.threads.peak", function (data) {
+            $("#jvm-threads-peak").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.classes.loaded", function (data) {
+            $("#jvm-classes-loaded").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.classes.unloaded", function (data) {
+            $("#jvm-classes-unloaded").html("<span>" + data.measurements[0].value + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.gc.memory.allocated", function (data) {
+            $("#jvm-gc-memory-allocated").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.gc.memory.promoted", function (data) {
+            $("#jvm-gc-memory-promoted").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.gc.max.data.size", function (data) {
+            $("#jvm-gc-max-data-size").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.gc.live.data.size", function (data) {
+            $("#jvm-gc-live-data-size").html("<span>" + jvmConvert(data.measurements[0].value) + "</span>")
+        });
+        ajaxGetTodo("/actuator/metrics/jvm.gc.pause", function (data) {
+            $("#jvm-gc-pause-count").html("<span>" + data.measurements[0].value + "</span>")
+            $("#jvm-gc-pause-total-time").html("<span>" + data.measurements[1].value + "</span>")
+        });
     }
 
     function sysConvert(value) {

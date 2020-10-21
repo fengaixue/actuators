@@ -1,18 +1,16 @@
 package com.micloud.actuator.component.health;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * <h1> 配置参数实体类 </h1>
+ * <h1>  </h1>
  *
  * @author 风清扬
- * @date 2020/09/18 14:13
+ * @date 2020/10/21 9:24
  */
 @Component
 public class HealthEntity {
@@ -93,13 +91,6 @@ public class HealthEntity {
     @Getter
     @Setter
     private List<Object> menus;
-
-    /**
-     * 邮件列表
-     */
-    @Getter
-    @Setter
-    private String addresss;
 
 
     public static HealthEntity getInstance() {

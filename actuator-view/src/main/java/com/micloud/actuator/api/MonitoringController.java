@@ -58,7 +58,8 @@ public class MonitoringController {
     }
 
    @GetMapping("/sendEmail")
-   public String sendEmail(String startTime,String server, String msg){
+   @ResponseBody
+   public Object sendEmail(String startTime,String server, String msg){
         try{
             Map params = new HashMap();
             params.put("startTime",startTime);
@@ -70,7 +71,6 @@ public class MonitoringController {
             log.error("发送邮件接口被调用方法出错sendEmail(),信息：{}",e.getMessage());
             return "发送失败";
         }
-
    }
 
 }

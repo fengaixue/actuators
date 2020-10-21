@@ -1,5 +1,5 @@
 server:
-  port: 3002
+  port: 3001
 spring:
   application:
     name: View-Server
@@ -18,14 +18,14 @@ spring:
     template-loader-path: classpath:/templates
 logging:
   config: classpath:logback-spring.xml
-log2path: F:/actuators/logs2
+log2path: D:/actuators/logs2
 # email 配置
 email:
   config:
     myAddress: li369436113@163.com
     passwordEmail: li123456
     monitorEmailTemplate: /pages/email/monitorEmail.ftl
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:3000/eureka/
+#eureka:
+  #client:
+    #service-url:
+      #defaultZone: http://localhost:3000/eureka/

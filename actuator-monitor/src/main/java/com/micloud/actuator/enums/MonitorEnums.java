@@ -4,30 +4,30 @@ package com.micloud.actuator.enums;
  * <h1>  </h1>
  *
  * @author 风清扬
- * @date 2020/10/01 16:44
+ * @date 2020/10/21 9:26
  */
 public final class MonitorEnums {
 
     /**
      * bat 执行方法和路径
      */
-    public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
-    //public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
+    //public  static final String CMDPATH = "cmd /c start E://actuators/mine/stop2.bat";
+    public  static final String CMDPATH = "cmd /c start D://mineJar/stop2.bat";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST = "http://localhost:9199/actuator/health";
+    public  static final String REMOTHOST = "http://localhost:9099/actuator/health";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST2 = "http://localhost:9199/actuator/metrics/jvm.memory.used";
+    public  static final String REMOTHOST2 = "http://localhost:9099/actuator/metrics/jvm.memory.used";
 
     /**
      * 需要监控的项目的地址
      */
-    public  static final String REMOTHOST3 = "http://localhost:9199/actuator/metrics/process.cpu.usage";
+    public  static final String REMOTHOST3 = "http://localhost:9099/actuator/metrics/process.cpu.usage";
 
     /**
      * 主状态 KEY
@@ -68,15 +68,10 @@ public final class MonitorEnums {
      */
     public static final Double CASTCPU = 0.9;
 
+
     /**
      * 初始化菜单项
      * */
-    //public static final String MENUS = "[{\"name\":\"本地项目\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9099\"}]";
-    public static final String MENUS = "[{\"name\":\"Mic-DASP1\",\"hrefH\":\"10.51.94.21:3001\",\"hrefA\":\"10.51.94.21:9199\"},{\"name\":\"Mic-DASP2\",\"hrefH\":\"10.51.94.22:3001\",\"hrefA\":\"10.51.94.22:9199\"},{\"name\":\"Mic-DASP3\",\"hrefH\":\"localhost:3001\",\"hrefA\":\"localhost:9199\"}]";
-
-    /**
-     * 发送的邮件列表
-     */
-    public static final String emails = "369436113@qq.com,liguofeng@bksmartmining.com";
+    public static final String MENUS = "[{\"name\":\"本机项目\",\"hrefH\":\"localhost:3002\",\"hrefA\":\"localhost:9099\"}]";
 
 }
