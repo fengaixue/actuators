@@ -1,9 +1,12 @@
 spring:
   application:
     name: actuator-zuul
-
+zuul:
+  prefix: /hfms
+  routes:
+    hfms-appli: /**
 server:
-  port: 3002
+  port: 2999
 
 eureka:
   client:
