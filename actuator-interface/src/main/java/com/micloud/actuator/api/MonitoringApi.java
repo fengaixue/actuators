@@ -1,10 +1,10 @@
 package com.micloud.actuator.api;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.micloud.actuator.component.JsonData;
 import com.micloud.actuator.component.health.HealthEntity;
 import com.micloud.actuator.model.MsgReceiveAlarmVo;
+import com.micloud.actuator.model.ObjectVo;
 import com.micloud.actuator.model.ReceiveVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -15,9 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <h1> 控制参数API  </h1>
@@ -90,6 +87,29 @@ public class MonitoringApi {
         }
     }
 
+
+    @PostMapping(value = "/api/msg/json")
+    @ResponseBody
+    public Object receive_Api(@RequestBody ObjectVo outputValue){
+        try{
+            MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(type);
+            headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+            String url = outputValue.url;
+            String reqMethoh = outputValue.reqMethoh;
+            log.info("执行了万能接口");
+            if("POST".equals(reqMethoh)){
+                Object o = outputValue.data;
+                return restTemplate.postForObject(HealthEntity.getInstance().getUriPrefix() + url,  new HttpEntity<>(JSON.toJSONString(o), headers), Object.class);
+            }else{
+                return restTemplate.getForObject(HealthEntity.getInstance().getUriPrefix() + url,Object.class);
+            }
+        }catch(Exception e){
+            log.info("转发接口失败, 参数：{}，异常信息：{}",JSON.toJSONString(outputValue),e.getMessage());
+            return JsonData.fail("转发服务器接口调用失败,错误信息："+e.getMessage());
+        }
+    }
 
     public JsonData accept(String param,String url){
         HttpHeaders headers = new HttpHeaders();
