@@ -19,7 +19,7 @@ public final class MonitorEnums {
     /**
      *  默认端口类型
      * */
-    public  static final String  DEFAULT_IP = "10.51.130.14:9199";
+    public  static final String  DEFAULT_IP = "localhost:9099";
 
 
 

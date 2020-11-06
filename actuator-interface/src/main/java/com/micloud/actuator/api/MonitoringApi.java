@@ -70,14 +70,24 @@ public class MonitoringApi {
     @PostMapping(value = "/api/msg/receiveAllAlarm")
     @ResponseBody
     public JsonData receive_all_alarmApi(@RequestBody MsgReceiveAlarmVo outputValue) {
-        return  accept(JSON.toJSONString(outputValue),HealthEntity.getInstance().getUriPrefix() + HealthEntity.getInstance().getDefaultIp() + HealthEntity.getInstance().getDefaultUrl());
+        try{
+            return  accept(JSON.toJSONString(outputValue),HealthEntity.getInstance().getUriPrefix() + HealthEntity.getInstance().getDefaultIp() + HealthEntity.getInstance().getDefaultUrl());
+        }catch(Exception e){
+            log.info("转发接口失败, 参数：{}，异常信息：{}",JSON.toJSONString(outputValue),e.getMessage());
+           return JsonData.fail("转发服务器接口调用失败,错误信息："+e.getMessage());
+        }
     }
 
 
     @PostMapping(value = "/api/msg/receiveKettleAlarm")
     @ResponseBody
     public JsonData receive_kettle_alarmApi(@RequestBody ReceiveVo outputValue){
-        return  accept(JSON.toJSONString(outputValue),HealthEntity.getInstance().getUriPrefix() + HealthEntity.getInstance().getDefaultIp() + HealthEntity.getInstance().getDefaultKettleUrl());
+        try{
+            return  accept(JSON.toJSONString(outputValue),HealthEntity.getInstance().getUriPrefix() + HealthEntity.getInstance().getDefaultIp() + HealthEntity.getInstance().getDefaultKettleUrl());
+        }catch(Exception e){
+            log.info("转发接口失败, 参数：{}，异常信息：{}",JSON.toJSONString(outputValue),e.getMessage());
+            return JsonData.fail("转发服务器接口调用失败,错误信息："+e.getMessage());
+        }
     }
 
 
