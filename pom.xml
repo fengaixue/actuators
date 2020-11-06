@@ -13,7 +13,8 @@
         <module>actuator-eureka</module>
 		<module>actuator-monitor</module>
 		<module>actuator-view</module>
-	</modules>
+        <module>actuator-interface</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
