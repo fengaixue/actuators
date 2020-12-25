@@ -16,10 +16,10 @@
 
     <name>actuator-view</name>
     <dependencies>
-       <dependency>
+      <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
