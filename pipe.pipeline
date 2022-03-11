@@ -1,24 +1,10 @@
 def skipRemainingStages = false,skipApprove = true,Exec = true,bb=3
 pipeline{
     agent any
-options {
-    ansiColor('xterm')
-  }
     stages{
-         stage("等待审批"){
-            when {
-                expression {!skipRemainingStages}
-                expression {!skipApprove}
-                }
-            steps{
-                echo 'nihao'
-            }
-             }
-
+      
         stage("任务执行"){
-            when {
-                expression {Exec}
-                }
+           
             steps{
                 script{
                   
