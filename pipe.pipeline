@@ -1,0 +1,42 @@
+def skipRemainingStages = false,skipApprove = true,Exec = true,bb=3
+pipeline{
+    agent any
+options {
+    ansiColor('xterm')
+  }
+    stages{
+         stage("等待审批"){
+            when {
+                expression {!skipRemainingStages}
+                expression {!skipApprove}
+                }
+            steps{
+                echo 'nihao'
+            }
+             }
+
+        stage("任务执行"){
+            when {
+                expression {Exec}
+                }
+            steps{
+                script{
+                  
+                     echo "\033[31m 红任务已执行完成 \033[0m"
+                     echo "\033[30m 黑任务已执行完成 \033[0m"
+                     echo "\033[32m 绿任务已执行完成 \033[0m"
+                     echo "\033[33m 黄任务已执行完成 \033[0m"
+                     echo "\033[34m 蓝任务已执行完成 \033[0m"
+                     echo "\033[35m 紫任务已执行完成 \033[0m"
+                     echo "\033[36m 深绿任务已执行完成 \033[0m"
+                     echo "\033[37m 白色任务已执行完成 \033[0m"
+                }
+                }
+
+
+            }
+
+    }
+
+}
+
